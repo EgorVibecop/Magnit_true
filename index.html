@@ -187,13 +187,14 @@
   .shot{display:flex; flex-direction:column; gap:8px;}
   .shot .tag{font-family:'JetBrains Mono',monospace; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--accent);}
   .shot img{width:100%; height:auto; border-radius:6px; border:1px solid var(--line); display:block;}
-  .caseshots .result{margin-top:18px;}
+  .caseshots .result{margin-top:18px; border:1px solid var(--line); color:var(--ink); font-weight:400;}
 
   /* ---- mistakes ---- */
-  .mistakes{list-style:none; margin:clamp(20px,3vw,30px) 0 0; padding:0; display:flex; flex-direction:column; gap:28px; max-width:66ch;}
-  .mistakes li{border-left:3px solid var(--bad); padding-left:16px;}
-  .mistakes .label{display:block; font-family:'JetBrains Mono',monospace; font-size:.68rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--bad); margin-bottom:4px;}
-  .mistakes .txt{font-size:1.02rem; line-height:1.5;}
+  .mistakes{list-style:none; margin:clamp(20px,3vw,30px) 0 0; padding:0; display:flex; flex-direction:column; gap:24px; max-width:920px;}
+  .mistakes li{display:flex; gap:28px; flex-wrap:wrap; align-items:flex-start; padding-bottom:24px; border-bottom:1px solid var(--line);}
+  .mistakes li:last-child{border-bottom:none; padding-bottom:0;}
+  .mistakes .bad-q{flex:1 1 300px; border-left:3px solid var(--bad); padding-left:16px; font-size:1.02rem; line-height:1.5;}
+  .mistakes .mistake-reveal{flex:1 1 280px;}
 
   /* ---- dialogue ---- */
   .dialogue{margin-top:clamp(20px,3vw,30px); max-width:600px; display:flex; flex-direction:column; gap:10px; position:relative;}
@@ -232,11 +233,11 @@
   .parrow{font-family:'JetBrains Mono',monospace; color:var(--ink-soft); font-size:.85rem; line-height:1; margin:6px 0; padding-left:8px;}
   .pills{display:flex; gap:8px; flex-wrap:wrap; margin:2px 0;}
   .pill{background:transparent; border:1px solid var(--line); border-radius:999px; padding:5px 13px; font-size:.82rem; color:var(--ink-soft);}
-  .parms{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:4px;}
+  .parms{display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:10px;}
   @media (max-width:760px){.parms{grid-template-columns:1fr;}}
   .arm{display:flex; flex-direction:column;}
   .armhead{font-family:'JetBrains Mono',monospace; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
-  .pstep{background:var(--card); border:1px solid var(--line); border-radius:4px; padding:10px 13px; margin-bottom:4px;}
+  .pstep{background:var(--card); border:1px solid var(--line); border-radius:4px; padding:10px 13px; margin-bottom:8px;}
   .pstep .t{font-size:.92rem; font-weight:600; line-height:1.3;}
   .pstep .d{font-size:.78rem; color:var(--ink-soft); margin-top:2px; line-height:1.35;}
   .pconn{color:var(--ink-soft); text-align:center; font-size:.95rem; line-height:1; margin:2px 0;}
@@ -356,7 +357,7 @@
   var SLIDES = [
     { type:"title",
       eyebrow:"Исследования  Магнит",
-      h1:"Кто такие исследователи клиентского опыта в Магнит и чем они занимаются",
+      h1:"Кто такие исследователи клиентского опыта в Магните и чем они занимаются",
       subtitle:"Презентация для тех, кто пишет тексты и хочет понимать, почему одни формулировки работают, а другие - нет"
     },
 
@@ -374,7 +375,7 @@
     { type:"bullets", chapter:"role", eyebrow:"01  Методы", title:"Методы: качественные",
       items:[
         "<b>Юзабилити-тестирование</b> - тестирование прототипов, макетов, приложения, сайта и так далее. База перед тем, как выкатить продукт в прод, или чтобы оценить, что после раскатки пошло не так",
-        "<b>Интервью</b> - собираем информацию об опыте человека, привычках, драйверах, барьерах и т.д.",
+        "<b>Интервью</b> - собираем информацию об опыте человека, привычках, драйверах, барьерах и т.д. Проводим, когда ищем точки роста, хотим лучше понять клиента, его боли",
         "<b>Фокус-группы</b> не проводим. Это больше для маркетинговых исследований, а мы - про продукт. Еще одна причина - довольно сложно набрать респондентов для фокус-группы по внутренней базе. Но если понадобится, соберем"
       ]
     },
@@ -411,17 +412,19 @@
       media:{ src:"img/brief-meme.jpg", alt:"Мем Дрейк: отказывается заполнять бриф, зато с радостью отправляет 10 голосовых" }
     },
 
-    { type:"bullets", chapter:"role", eyebrow:"01  Артефакты", title:"Гайд, анкета, отчет, транскрипты",
-      items:[
-        "Под качественное исследование - гайд интервью или сценарий теста",
-        "Под количественное - анкета. Собираем на своем портале или в Анкетологе, черновик иногда сначала делаем в Excel или Word",
+    { type:"cols", chapter:"role", eyebrow:"01  Артефакты", title:"Гайд, анкета, отчет, транскрипты",
+      media:{ src:"img/researcher.jpg", alt:"Спящий исследователь с ноутбуком на груди, на экране чат с ChatGPT: проведи исследование хорошо и без ошибок" },
+      colA:{h:"Качественное", items:[
+        "Гайд интервью или сценарий теста",
+        "Отчет в ppt или pdf с выводами, плюс записи и транскрипты интервью как доказательная база"
+      ]},
+      colB:{h:"Количественное", items:[
+        "Анкета. Собираем на своем портале или в Анкетологе, черновик иногда сначала делаем в Excel или Word",
         "Используем наработки прошлых анкет",
         "Подключаем ИИ к редактуре текстов, но аккуратно",
         "Анкету перед отправкой респондентам ревьюит другой исследователь",
-        "Крайний срок правок анкеты - за день до отправления",
-        "На выходе отчет в ppt или pdf с выводами, плюс записи и транскрипты интервью как доказательная база"
-      ],
-      media:{ src:"img/researcher.jpg", alt:"Спящий исследователь с ноутбуком на груди, на экране чат с ChatGPT: проведи исследование хорошо и без ошибок" }
+        "Крайний срок правок анкеты - за день до отправления"
+      ]}
     },
 
     { type:"pipeline", chapter:"role", eyebrow:"01  Путь и инструменты", title:"Как выглядит путь исследования",
@@ -454,19 +457,19 @@
         "Задачу можно закрыть проще, быстрее или точнее без исследования. В датадривен компании многое видно в аналитике: кто эти люди, откуда, сколько времени проводят в приложении. Исследование нужно там, где встает вопрос «почему», или где данных недостаточно",
         "До целевой аудитории не добраться. В B2C это редкость, в B2B случается: людей настолько мало, что не получится ни разослать анкету, ни поговорить",
         "Ответ уже есть в данных. Стоит сначала посмотреть внутренние исследования и открытые источники - это и есть кабинетное исследование. В интернете данных много, ИИ хорошо помогает их искать",
-        "Гипотезу можно проверить прямо в бою, A/B тестом. Если решение можно быстро выкатить на часть пользователей и посмотреть на реальное поведение, это точнее, чем спрашивать про намерения - люди не всегда делают то, что говорят"
+        "Уже есть готовое визуальное решение и точная гипотеза, а знать «почему» не обязательно - нужно просто вырастить метрику. Тогда гипотезу проверяем прямо в бою, A/B тестом: смотрим на реальное поведение, а не на то, что люди говорят о своих намерениях"
       ]
     },
 
     { type:"flow", chapter:"method", eyebrow:"02  Выбор метода", title:"Критерии выбора метода" },
 
     { type:"caseshots", chapter:"method", eyebrow:"02  Выбор метода", title:"Пример: когда нужны оба метода",
-      lead:"Смотрели, как клиенты относятся к push-уведомлениям в приложении. Обвели то, что дает основной вывод",
+      lead:"Смотрели, как клиенты относятся к push-уведомлениям в приложении",
       shots:[
-        { tag:"Качественное - дало гипотезы", src:"img/quiz-qual.png", alt:"Слайд качественного исследования про отношение к уведомлениям, с обведенными ключевыми выводами" },
-        { tag:"Количественное - проверило на цифрах", src:"img/quiz-quant.png", alt:"График опроса Q29 про частоту уведомлений по сегментам, с обведенными ключевыми долями" }
+        { tag:"Качественное - дало гипотезы", src:"img/quiz-qual-clean.png", alt:"Слайд качественного исследования про отношение к уведомлениям" },
+        { tag:"Количественное - проверило на цифрах", src:"img/quiz-quant-clean.png", alt:"График опроса Q29 про частоту уведомлений по сегментам" }
       ],
-      result:"Интервью дали гипотезы, опрос проверил их на масштабе и разложил по сегментам"
+      result:"Интервью дало гипотезы и фактуру, а опрос проверил их в цифрах"
     },
 
     { type:"divider", chapter:"wording", num:"03", title:"Как задаем вопросы" },
@@ -474,7 +477,7 @@
     { type:"guidelines", chapter:"wording", eyebrow:"03  Формулировки", title:"Как задавать вопросы правильно",
       items:[
         { text:"Вопрос - одна часть, не несколько вопросов через «и»" },
-        { text:"Вопрос простой и односложный, без сложных конструкций" },
+        { text:"Вопрос должен быть простым, без сложных конструкций" },
         { text:"Все термины и слова понятны и очевидны респонденту. В качественном можно переспросить, если что-то неясно, в количественном - нет" },
         { text:"Если термин важен для вопроса, но мы не проверяем, знает ли его респондент, лучше сразу его расшифровать",
           example:"«Как часто вы пользуетесь Магнитиками в приложении Магнит? (Магнитики - внутренняя валюта, которую можно обменять на скидку на определенные коллекционные товары)»",
@@ -484,10 +487,10 @@
 
     { type:"mistakes", chapter:"wording", eyebrow:"03  Формулировки", title:"Как неправильно задавать вопросы",
       items:[
-        {label:"Наводящий вопрос", txt:"«Не изучали экран, не понравилось?» вместо «Почему не изучали?»"},
-        {label:"Вопрос утверждение", txt:"«То есть карты использовать не будете, у вас их и нет?»"},
-        {label:"Вопрос про будущее", txt:"«Если бы кнопка была красная, купили бы?»"},
-        {label:"Два вопроса в одном", txt:"«Как часто вы пользуетесь скидками и через какой канал о них узнаете?» Отвечают обычно только на последний"}
+        {bad:"«Не изучали экран, не понравилось?»", label:"Наводящий вопрос", good:"«Почему не изучали?»"},
+        {bad:"«То есть карты использовать не будете, у вас их и нет?»", label:"Вопрос утверждение", good:"«Есть ли у вас пластиковые карты?»"},
+        {bad:"«Если бы кнопка была красная, купили бы?»", label:"Вопрос про будущее", good:"Такой вопрос лучше не задавать - по ответу на него нельзя потом писать вывод"},
+        {bad:"«Как часто вы пользуетесь скидками и через какой канал о них узнаете?»", label:"Два вопроса в одном", good:"Сначала «Как часто вы пользуетесь скидками?», и уже по ответу - «Через какой канал вы о них узнаете?»"}
       ],
       media:{ src:"img/silly-survey.jpg", alt:"Табличка: Дебильный опрос, составитель - идиот" }
     },
@@ -502,21 +505,21 @@
       before:"img/q1-before.png", after:"img/q1-after.png",
       alt:"Вопрос анкеты: какие из приложений вы посещали хотя бы 1 раз за последние 3 месяца",
       question:"Что не так с этим вопросом?",
-      answer:"Слово «посещали» двусмысленно - непонятно, речь про поход в магазин или про открытие приложения. Часть ответов могла спутать оффлайн и онлайн"
+      answer:"Слово «посещали» двусмысленно - непонятно, речь про поход в магазин или про открытие приложения. Из-за этого часть ответов может относиться и к оффлайну, и к онлайну - непонятно, к чему именно"
     },
 
     { type:"quizshot", chapter:"wording", eyebrow:"03  Практика", title:"Вопрос из реальной анкеты",
       before:"img/q2-before.png", after:"img/q2-after.png",
       alt:"Вопрос анкеты: как вы относитесь к тому, что теперь нужно выбирать базовый кешбэк на все покупки",
       question:"Что не так с этим вопросом?",
-      answer:"«Базовый кешбэк» - термин, который не все помнят или знают, само слово «кешбэк» знают не все. Раньше он был у всех по умолчанию, теперь это выбор - неясно, поняли ли респонденты эту разницу"
+      answer:"«Базовый кешбэк» - термин, который не все помнят или знают, даже слово «кешбэк» знают не все. К тому же «нужно выбирать» звучит двусмысленно: одни могли прочитать это как обязаловку, другие - просто как факт, что раньше кешбэк начислялся автоматически, а теперь это выбор"
     },
 
     { type:"quizshot", chapter:"wording", eyebrow:"03  Практика", title:"Вопрос из реальной анкеты",
       before:"img/q3-before.png", after:"img/q3-after.png",
       alt:"Вопрос анкеты: представим, что вы хотите работать в магазине большого формата",
       question:"Что не так с этим вопросом?",
-      answer:"Респонденты могут не понимать, что такое «формат» магазина и почему именно про формат их спрашивают"
+      answer:"Респонденты могут не понимать, что такое «формат» магазина и почему именно про формат их спрашивают. Скорее всего, они будут выбирать то, что им знакомо, а не то, что на самом деле подходит"
     },
 
     { type:"quizshot", chapter:"wording", eyebrow:"03  Практика", title:"Вопрос из реальной анкеты",
@@ -533,8 +536,9 @@
     { type:"cols", chapter:"reading", eyebrow:"04  Человеческий фактор", title:"Убираем человеческий фактор",
       media:{ src:"img/griboyedov.jpg", alt:"Скриншот переписки: кто-то приписывает удачную фразу Грибоедову, хотя автор неизвестен" },
       colA:{h:"Со стороны интервьюера", items:[
-        "Открытые вопросы вместо наводящих",
-        "Не спрашиваем про будущее"
+        "Не задаем наводящие вопросы",
+        "Не спрашиваем про будущее",
+        "Не перебиваем, даем высказать мысль полностью"
       ]},
       colB:{h:"При анализе результатов", items:[
         "Не делаем вывод по одной яркой истории, нужно несколько независимых интервью",
@@ -562,7 +566,7 @@
     },
 
     { type:"closing", title:"Кто к нам обращается",
-      text:"В основном проводим проекты по запросу продактов, но также выполняем задачи для редакторов, маркетологов, дизайнеров и по собственным инициативам.",
+      text:"В основном проводим проекты по запросу продактов, но также выполняем задачи для редакторов, маркетологов, дизайнеров, а еще по собственным инициативам.",
       tagline:"Приходите, мы не кусаемся"
     }
   ];
@@ -579,8 +583,8 @@
       '<text x="240" y="137" text-anchor="middle" font-size="14" font-weight="800" fill="currentColor">Количественное</text>'+
       '<rect x="570" y="112" width="220" height="40" rx="8" fill="currentColor" opacity="0.12"/>'+
       '<text x="680" y="137" text-anchor="middle" font-size="14" font-weight="800" fill="currentColor">Качественное</text>'+
-      leafGroup(130,['Цифры в процентах','Проверить гипотезу','Посчитать сегмент','Спрогнозировать'])+
-      leafGroup(570,['Проверить понимание','Протестировать прототип','Копнуть в глубину','Сформировать гипотезы','Труднодоступная аудитория'])+
+      leafGroup(130,['Цифры в процентах','Верифицировать гипотезу','Посчитать сегмент','Спрогнозировать'])+
+      leafGroup(570,['Проверить понимание','Протестировать прототип','Копнуть в глубину','Сформировать гипотезы','Изучить труднодоступную аудиторию'])+
       '</svg><figcaption></figcaption></figure>';
   }
   function leafGroup(startX, leaves){
@@ -594,7 +598,7 @@
   }
 
   function lanesSVG(){
-    return '<figure><svg viewBox="0 0 920 300" role="img" aria-label="Схема: количественное отвечает что происходит, качественное отвечает почему, вместе они сходятся в проверке методологии">'+
+    return '<figure><svg viewBox="0 0 920 440" role="img" aria-label="Схема: количественное отвечает что происходит, качественное отвечает почему, вместе они сходятся в проверке методологии, а если с методологией все в порядке, доверяем количественному">'+
       '<defs><marker id="arw2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">'+
       '<path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>'+
       '<rect x="40" y="20" width="380" height="64" rx="10" fill="currentColor" opacity=".1"/>'+
@@ -607,9 +611,15 @@
       '<line x1="690" y1="84" x2="480" y2="150" stroke="currentColor" stroke-width="1.4" marker-end="url(#arw2)"/>'+
       '<rect x="210" y="160" width="500" height="110" rx="12" fill="none" stroke="currentColor" stroke-width="1.6"/>'+
       '<text x="460" y="188" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">ПРОВЕРЯЕМ МЕТОДОЛОГИЮ</text>'+
-      '<text x="460" y="214" text-anchor="middle" font-size="12.5" fill="currentColor" opacity=".8">та ли выборка  та ли формулировка</text>'+
+      '<text x="460" y="214" text-anchor="middle" font-size="12.5" fill="currentColor" opacity=".8">та ли выборка, та ли формулировка</text>'+
       '<text x="460" y="234" text-anchor="middle" font-size="12.5" fill="currentColor" opacity=".8">не изменился ли контекст (акция, сезон, новость)</text>'+
-      '</svg><figcaption>Прежде чем писать вывод из расхождения, проверяем, не в методологии ли дело</figcaption></figure>';
+      '<line x1="460" y1="270" x2="460" y2="298" stroke="currentColor" stroke-width="1.4" marker-end="url(#arw2)"/>'+
+      '<rect x="160" y="300" width="600" height="130" rx="12" class="accentText" fill="currentColor" opacity=".1"/>'+
+      '<text x="460" y="326" text-anchor="middle" font-size="13" font-weight="800" class="accentText">ЕСЛИ С МЕТОДОЛОГИЕЙ ВСЕ В ПОРЯДКЕ</text>'+
+      '<text x="460" y="350" text-anchor="middle" font-size="12.5" fill="currentColor" opacity=".8">как правило, доверяем данным количественного исследования</text>'+
+      '<text x="460" y="372" text-anchor="middle" font-size="12.5" fill="currentColor" opacity=".8">качественное и количественное напрямую не сравниваем</text>'+
+      '<text x="460" y="394" text-anchor="middle" font-size="12.5" fill="currentColor" opacity=".8">на интервью не спрашиваем «нравится?», чтобы потом написать «нравится 9 из 10»</text>'+
+      '</svg></figure>';
   }
 
   function pipelineHTML(s){
@@ -745,7 +755,15 @@
     }
     else if(s.type==='mistakes'){
       html = '<div class="eyebrow">'+s.eyebrow+'</div><h2>'+s.title+'</h2><ul class="mistakes">'+
-        s.items.map(function(m){ return '<li><span class="label">'+m.label+'</span><span class="txt">'+m.txt+'</span></li>'; }).join('')+
+        s.items.map(function(m){
+          return '<li>'+
+            '<div class="bad-q">'+m.bad+'</div>'+
+            '<div class="mistake-reveal">'+
+              '<button class="quiz-btn" type="button">Показать правильный вариант</button>'+
+              '<div class="quiz-a"><span class="qtag">'+m.label+'</span>'+m.good+'</div>'+
+            '</div>'+
+          '</li>';
+        }).join('')+
         '</ul>';
     }
     else if(s.type==='dialogue'){
