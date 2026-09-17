@@ -185,7 +185,7 @@
   .shotrow{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
   @media (max-width:760px){.shotrow{grid-template-columns:1fr;}}
   .shot{display:flex; flex-direction:column; gap:8px;}
-  .shot .tag{font-family:'JetBrains Mono',monospace; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--accent);}
+  .shot .tag{font-family:'JetBrains Mono',monospace; font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink);}
   .shot img{width:100%; height:auto; border-radius:6px; border:1px solid var(--line); display:block;}
   .caseshots .result{margin-top:18px; border:1px solid var(--line); color:var(--ink); font-weight:400;}
 
@@ -195,6 +195,8 @@
   .mistakes li:last-child{border-bottom:none; padding-bottom:0;}
   .mistakes .bad-q{flex:1 1 300px; border-left:3px solid var(--bad); padding-left:16px; font-size:1.02rem; line-height:1.5;}
   .mistakes .mistake-reveal{flex:1 1 280px;}
+  .mistakes .mistake-reveal .qtag{display:block; font-family:'JetBrains Mono',monospace; font-size:.68rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px;}
+  .mistakes .mistake-reveal .quiz-a .qtag{color:var(--good);}
 
   /* ---- dialogue ---- */
   .dialogue{margin-top:clamp(20px,3vw,30px); max-width:600px; display:flex; flex-direction:column; gap:10px; position:relative;}
@@ -344,8 +346,7 @@
     {key:"role", label:"Кто мы"},
     {key:"method", label:"Метод"},
     {key:"wording", label:"Вопросы"},
-    {key:"reading", label:"Чтение данных"},
-    {key:"conflict", label:"Противоречия"}
+    {key:"reading", label:"Чтение данных"}
   ];
 
   function esc(s){ return s; }
@@ -451,7 +452,7 @@
 
     { type:"divider", chapter:"method", num:"02", title:"Как выбираем метод", sub:"От задачи к инструменту" },
 
-    { type:"steps", chapter:"method", eyebrow:"02  Выбор метода", title:"Когда вообще не стоит исследовать",
+    { type:"steps", chapter:"method", eyebrow:"02  Выбор метода", title:"Когда не стоит исследовать",
       items:[
         "Нет понимания, что хотим узнать. Исследование «просто чтобы поисследовать», без конкретной цели, - плохая идея",
         "Задачу можно закрыть проще, быстрее или точнее без исследования. В датадривен компании многое видно в аналитике: кто эти люди, откуда, сколько времени проводят в приложении. Исследование нужно там, где встает вопрос «почему», или где данных недостаточно",
@@ -487,8 +488,8 @@
 
     { type:"mistakes", chapter:"wording", eyebrow:"03  Формулировки", title:"Как неправильно задавать вопросы",
       items:[
-        {bad:"«Не изучали экран, не понравилось?»", label:"Наводящий вопрос", good:"«Почему не изучали?»"},
-        {bad:"«То есть карты использовать не будете, у вас их и нет?»", label:"Вопрос утверждение", good:"«Есть ли у вас пластиковые карты?»"},
+        {bad:"«Не изучали экран, не понравилось?»", label:"Наводящий вопрос", good:"«Почему не изучали?»", btnLabel:"Показать правильный вариант", btnLabelHide:"Скрыть правильный вариант"},
+        {bad:"«То есть карты использовать не будете, у вас их и нет?»", label:"Вопрос утверждение", good:"«Есть ли у вас пластиковые карты?»", btnLabel:"Показать правильный вариант", btnLabelHide:"Скрыть правильный вариант"},
         {bad:"«Если бы кнопка была красная, купили бы?»", label:"Вопрос про будущее", good:"Такой вопрос лучше не задавать - по ответу на него нельзя потом писать вывод"},
         {bad:"«Как часто вы пользуетесь скидками и через какой канал о них узнаете?»", label:"Два вопроса в одном", good:"Сначала «Как часто вы пользуетесь скидками?», и уже по ответу - «Через какой канал вы о них узнаете?»"}
       ],
@@ -529,9 +530,24 @@
       answer:"Вопрос предполагает, что недоверие уже есть, хотя это не проверяли заранее. Может, доверие и так высокое, повышать нечего. Вариант «ничего из вышеперечисленного» тоже путает - неясно, это «не доверяю совсем» или «уже доверяю»"
     },
 
-    { type:"divider", chapter:"reading", num:"04", title:"Как читать результаты" },
+    { type:"divider", chapter:"reading", num:"04", title:"Расхождения" },
 
     { type:"lanes", chapter:"reading", eyebrow:"04  Расхождения", title:"Когда качественник расходится с количественником" },
+
+    { type:"steps", chapter:"reading", eyebrow:"04  Алгоритм", title:"Данные противоречат друг другу",
+      items:[
+        "Смотрим причину: возможно, дело в аудитории, возможно вопрос в анкете или гайде сформулирован криво",
+        "Ставим себя на место человека, который отвечал: как он мог это прочитать или услышать",
+        "Если с вопросом все в порядке, смотрим, как отвечали на остальные вопросы анкеты. Может, такая картина по всей выборке",
+        "Если и это ничего не объясняет, не прячем это. Прямо пишем в отчете, что данные разошлись"
+      ]
+    },
+
+    { type:"quiz", chapter:"reading", eyebrow:"04  В качественном", title:"Тот же принцип, плюс контекст",
+      text:"На юзабилити тесте попался человек, который вообще не умел пользоваться телефоном. Не мог открыть ни одно приложение и наделал кучу ошибок на тесте прототипа",
+      question:"Что делаем с таким респондентом?",
+      answer:"Его результат не выкидываем, но учитываем контекст, когда делаем вывод про прототип"
+    },
 
     { type:"cols", chapter:"reading", eyebrow:"04  Человеческий фактор", title:"Убираем человеческий фактор",
       media:{ src:"img/griboyedov.jpg", alt:"Скриншот переписки: кто-то приписывает удачную фразу Грибоедову, хотя автор неизвестен" },
@@ -546,23 +562,6 @@
         "Не игнорируем слова «нелюбимых» респондентов",
         "Презентуем результаты так, чтобы заказчик мог их правильно интерпретировать"
       ]}
-    },
-
-    { type:"divider", chapter:"conflict", num:"05", title:"Когда данные спорят", sub:"Что делать с противоречием" },
-
-    { type:"steps", chapter:"conflict", eyebrow:"05  Алгоритм", title:"Данные противоречат друг другу",
-      items:[
-        "Смотрим причину: возможно, дело в аудитории, возможно вопрос в анкете или гайде сформулирован криво",
-        "Ставим себя на место человека, который отвечал: как он мог это прочитать или услышать",
-        "Если с вопросом все в порядке, смотрим, как отвечали на остальные вопросы анкеты. Может, такая картина по всей выборке",
-        "Если и это ничего не объясняет, не прячем это. Прямо пишем в отчете, что данные разошлись"
-      ]
-    },
-
-    { type:"quiz", chapter:"conflict", eyebrow:"05  В качественном", title:"Тот же принцип, плюс контекст",
-      text:"На юзабилити тесте попался человек, который вообще не умел пользоваться телефоном. Не мог открыть ни одно приложение и наделал кучу ошибок на тесте прототипа",
-      question:"Что делаем с таким респондентом?",
-      answer:"Его результат не выкидываем, но учитываем контекст, когда делаем вывод про прототип"
     },
 
     { type:"closing", title:"Кто к нам обращается",
@@ -667,7 +666,6 @@
           return '<div class="shot"><span class="tag">'+sh.tag+'</span><img src="'+sh.src+'" alt="'+sh.alt+'" loading="lazy"></div>';
         }).join('')+
       '</div>'+
-      '<div class="result">'+s.result+'</div>'+
       '</div>';
   }
 
@@ -756,10 +754,12 @@
     else if(s.type==='mistakes'){
       html = '<div class="eyebrow">'+s.eyebrow+'</div><h2>'+s.title+'</h2><ul class="mistakes">'+
         s.items.map(function(m){
+          var showLabel = m.btnLabel || 'Показать ответ';
+          var hideLabel = m.btnLabelHide || 'Скрыть ответ';
           return '<li>'+
             '<div class="bad-q">'+m.bad+'</div>'+
             '<div class="mistake-reveal">'+
-              '<button class="quiz-btn" type="button">Показать правильный вариант</button>'+
+              '<button class="quiz-btn" type="button" data-show-label="'+showLabel+'" data-hide-label="'+hideLabel+'">'+showLabel+'</button>'+
               '<div class="quiz-a"><span class="qtag">'+m.label+'</span>'+m.good+'</div>'+
             '</div>'+
           '</li>';
@@ -851,7 +851,9 @@
     var ans = btn.parentElement.querySelector('.quiz-a');
     if(!ans) return;
     var showing = ans.classList.toggle('show');
-    btn.textContent = showing ? 'Скрыть ответ' : 'Показать ответ';
+    var showLabel = btn.dataset.showLabel || 'Показать ответ';
+    var hideLabel = btn.dataset.hideLabel || 'Скрыть ответ';
+    btn.textContent = showing ? hideLabel : showLabel;
     var shotWrap = btn.closest('.quizshot');
     if(shotWrap){
       var img = shotWrap.querySelector('.qs-img');
