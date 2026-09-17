@@ -466,6 +466,20 @@
 
     { type:"flow", chapter:"method", eyebrow:"02  Выбор метода", title:"Критерии выбора метода" },
 
+    { type:"cols", chapter:"method", eyebrow:"02  Выборка", title:"Сколько людей нужно для исследования",
+      lead:"Размер выборки - не прихоть, а следствие того, что именно мы измеряем",
+      colA:{h:"Качественное: 10-20 человек", items:[
+        "Не считаем проценты, ищем паттерны и причины",
+        "После 10-15 разговоров новые интервью обычно повторяют уже услышанное",
+        "Дальше почти нет новых тем, только повторы"
+      ]},
+      colB:{h:"Количественное: от сотни до тысячи", items:[
+        "Считаем цифру, которая должна отражать всю аудиторию, а не только выборку",
+        "Чем точнее нужна цифра и чем больше сегментов сравниваем, тем больше нужна выборка",
+        "Редкое поведение или маленький сегмент - тоже повод увеличивать выборку"
+      ]}
+    },
+
     { type:"caseshots", chapter:"method", eyebrow:"02  Выбор метода", title:"Пример: когда нужны оба метода",
       lead:"Смотрели, как клиенты относятся к push-уведомлениям в приложении",
       shots:[
@@ -772,7 +786,8 @@
         (s.quiz?quizHTML(s.quiz):'');
     }
     else if(s.type==='cols'){
-      html = '<div class="eyebrow">'+s.eyebrow+'</div><h2>'+s.title+'</h2><div class="cols">'+
+      var colsLead = s.lead ? '<p class="plain" style="margin-top:14px;max-width:62ch;">'+s.lead+'</p>' : '';
+      html = '<div class="eyebrow">'+s.eyebrow+'</div><h2>'+s.title+'</h2>'+colsLead+'<div class="cols">'+
         ['colA','colB'].map(function(k){
           var c=s[k];
           return '<div class="col"><h3>'+c.h+'</h3><ul>'+c.items.map(function(t){return '<li>'+t+'</li>';}).join('')+'</ul></div>';
