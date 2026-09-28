@@ -486,10 +486,9 @@
     { type:"bullets", chapter:"method", eyebrow:"02  Цифры", title:"Корреляция - не причина",
       items:[
         "В 2000 году статистик Роберт Мэтьюз показал: в 17 странах Европы число аистов связано с числом рождений детей (коэффициент корреляции 0,62, p = 0,008)",
-        "Аисты детей не приносят. У обоих показателей общая причина: чем больше страна, тем больше в ней и аистов, и людей",
-        "Количественное исследование показывает связь между цифрами, а причину помогает найти качественное"
+        "Аисты детей не приносят. У обоих показателей общая причина: чем больше страна, тем больше в ней и аистов, и людей"
       ],
-      media:{ src:"img/correlation-storks.jpg", alt:"Иллюстрация sketchplanations: корреляция не означает причинность, число гнезд аистов на крышах растет вместе с числом детей" }
+      media:{ wide:true, src:"img/correlation-storks.jpg", alt:"Иллюстрация sketchplanations: корреляция не означает причинность, число гнезд аистов на крышах растет вместе с числом детей" }
     },
 
     { type:"caseshots", chapter:"method", eyebrow:"02  Выбор метода", title:"Пример: когда нужны оба метода",
@@ -821,7 +820,7 @@
 
     if(s.media){
       el.className+=' has-media';
-      var wideCls = s.media.type==='pair' ? ' wide' : '';
+      var wideCls = (s.media.type==='pair' || s.media.wide) ? ' wide' : '';
       html = '<div class="slide-body"><div class="content-col">'+html+'</div><div class="image-col'+wideCls+'">'+mediaHTML(s.media)+'</div></div>';
     }
 
