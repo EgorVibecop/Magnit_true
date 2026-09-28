@@ -248,11 +248,13 @@
   .has-media .slide-body{display:flex; gap:clamp(24px,4vw,56px); align-items:flex-start; width:100%;}
   .has-media .content-col{flex:1 1 auto; min-width:0;}
   .has-media .image-col{flex:0 0 clamp(200px,27vw,320px); max-width:320px; padding-top:4px;}
+  .has-media .image-col.xwide{flex:0 0 clamp(320px,50vw,720px); max-width:720px;}
   .has-media .image-col.wide{flex:0 0 clamp(280px,40vw,460px); max-width:460px;}
   @media (max-width:820px){
     .has-media .slide-body{flex-direction:column;}
     .has-media .image-col{flex:none; max-width:220px; align-self:flex-start;}
     .has-media .image-col.wide{max-width:320px;}
+    .has-media .image-col.xwide{max-width:100%; width:100%;}
   }
   .image-col img{width:100%; height:auto; border-radius:6px; border:1px solid var(--line); display:block;}
   .media-single{margin:0;}
@@ -488,7 +490,7 @@
         "В 2000 году статистик Роберт Мэтьюз показал: в 17 странах Европы число аистов связано с числом рождений детей (коэффициент корреляции 0,62, p = 0,008)",
         "Аисты детей не приносят. У обоих показателей общая причина: чем больше страна, тем больше в ней и аистов, и людей"
       ],
-      media:{ wide:true, src:"img/correlation-storks.jpg", alt:"Иллюстрация sketchplanations: корреляция не означает причинность, число гнезд аистов на крышах растет вместе с числом детей" }
+      media:{ xwide:true, src:"img/correlation-storks.jpg", alt:"Иллюстрация sketchplanations: корреляция не означает причинность, число гнезд аистов на крышах растет вместе с числом детей" }
     },
 
     { type:"caseshots", chapter:"method", eyebrow:"02  Выбор метода", title:"Пример: когда нужны оба метода",
@@ -820,7 +822,7 @@
 
     if(s.media){
       el.className+=' has-media';
-      var wideCls = (s.media.type==='pair' || s.media.wide) ? ' wide' : '';
+      var wideCls = s.media.xwide ? ' xwide' : ((s.media.type==='pair' || s.media.wide) ? ' wide' : '');
       html = '<div class="slide-body"><div class="content-col">'+html+'</div><div class="image-col'+wideCls+'">'+mediaHTML(s.media)+'</div></div>';
     }
 
