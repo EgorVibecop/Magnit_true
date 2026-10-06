@@ -196,6 +196,7 @@
   .mistakes .bad-q{flex:1 1 300px; border-left:3px solid var(--bad); padding-left:16px; font-size:1.02rem; line-height:1.5;}
   .mistakes .mistake-reveal{flex:1 1 280px;}
   .mistakes .quiz-a.show{max-height:700px;}
+  .reveal-img{width:100%; height:auto; margin-top:12px; border-radius:6px; display:block;}
   .ans-title{margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:.66rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.8;}
   .ans-list{margin:6px 0 0; padding-left:18px; font-size:.9rem; line-height:1.45;}
   .ans-list li{margin-bottom:3px;}
@@ -564,7 +565,7 @@
 
     { type:"mistakes", chapter:"wording", eyebrow:"03  Практика", title:"Вопросы из реального клик-теста",
       items:[
-        {bad:"«Вы собираетесь покупать сухие завтраки и хотите получать за них кешбэк. Куда нажмете в первую очередь?»", label:"Подсказка в вопросе", good:"В вопросе названа та же категория, что подписана на карточке на экране, то есть респонденту подсказали, куда кликать. 82% нажали на кнопку «Выбрать», но сравнивать с вопросами без подсказки нельзя", btnLabel:"Показать, что не так", btnLabelHide:"Скрыть"},
+        {bad:"«Вы собираетесь покупать сухие завтраки и хотите получать за них кешбэк. Куда нажмете в первую очередь?»", label:"Подсказка в вопросе", good:"В вопросе названа та же категория, что подписана на карточке на экране, то есть респонденту подсказали, куда кликать. 82% нажали на кнопку «Выбрать», но сравнивать с вопросами без подсказки нельзя", img:"img/click-maps.png", btnLabel:"Показать, что не так", btnLabelHide:"Скрыть"},
         {bad:"«Что, по-вашему, означает «только сегодня»? К чему относится таймер рядом с этим названием?»", label:"Два вопроса в одном", good:"Две части пришлось кодировать отдельно: «только сегодня» объяснили 64%, таймер 58%. Один и тот же респондент мог ответить на одну часть и пропустить вторую", answers:["«скидки только сегодня» (объяснил только первую часть)","«Время действия скидки» (только вторую)","«Таймер обнуляет кэшбек» (ошибочное толкование)"], btnLabel:"Показать, что не так", btnLabelHide:"Скрыть"},
         {bad:"«Как вы понимаете этот ряд значков? Что означает красный значок? А серые значки?»", label:"Три вопроса в одном", good:"Про ряд в целом, про красный и про серые значки сразу. Ряд как целое объяснили 47%, а 53% ограничились описанием цвета. Корректнее задавать один вопрос за раз", answers:["«красный - выполнено, серый - нет» (только цвета)","«Красный это избранное, другие непонятно»","«красный значок - избранное, непонятно, что означают серые значки»"], btnLabel:"Показать, что не так", btnLabelHide:"Скрыть"}
       ]
@@ -809,7 +810,7 @@
             '<div class="bad-q">'+m.bad+'</div>'+
             '<div class="mistake-reveal">'+
               '<button class="quiz-btn" type="button" data-show-label="'+showLabel+'" data-hide-label="'+hideLabel+'">'+showLabel+'</button>'+
-              '<div class="quiz-a"><span class="qtag">'+m.label+'</span>'+m.good+(m.answers?'<div class="ans-title">Как ответили люди</div><ul class="ans-list">'+m.answers.map(function(a){return '<li>'+a+'</li>';}).join('')+'</ul>':'')+'</div>'+
+              '<div class="quiz-a"><span class="qtag">'+m.label+'</span>'+m.good+(m.img?'<img class="reveal-img" src="'+m.img+'" alt="Карты кликов: вопрос 2 без подсказки и вопрос 8 с подсказкой" loading="lazy">':'')+(m.answers?'<div class="ans-title">Как ответили люди</div><ul class="ans-list">'+m.answers.map(function(a){return '<li>'+a+'</li>';}).join('')+'</ul>':'')+'</div>'+
             '</div>'+
           '</li>';
         }).join('')+
